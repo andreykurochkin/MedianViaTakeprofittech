@@ -45,10 +45,8 @@ namespace TCPConnection.Domain {
                 return string.Empty;
             }
         }
-        public static int ToInt(this string s) {
-            int result;
-            return (int.TryParse(s.SafeToIntegers(), out result) ? 
-                result: throw new Exception($"error on parsing {s}")); 
-        }
+        public static int ToInt(this string s) => int.TryParse(s.SafeToIntegers(), out int result) ? 
+            result : 
+            throw new Exception($"error on parsing {s}");
     }
 }
