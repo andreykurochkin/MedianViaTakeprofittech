@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 using System.IO;
 
-namespace TCPConnection.Domain {
+namespace MedianViaTakeprofittech.Application {
     /// <summary>
-    /// returns integer from server
+    /// retrieves response from server
     /// </summary>
     public class TcpResponse : ICommand<int?> {
         private static readonly Encoding _koi8r = CodePagesEncodingProvider.Instance.GetEncoding("koi8-r");
@@ -30,8 +29,5 @@ namespace TCPConnection.Domain {
                 return null;
             }
         }
-    }
-    public class ResponseResult {
-
     }
 }

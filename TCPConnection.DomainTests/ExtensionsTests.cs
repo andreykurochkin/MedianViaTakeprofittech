@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 using Xunit;
-using TCPConnection.Domain;
+using MedianViaTakeprofittech.Application;
 using FluentAssertions;
 using System.Threading.Tasks;
 

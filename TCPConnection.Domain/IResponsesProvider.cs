@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 
 namespace MedianViaTakeprofittech.Application {
-    public interface ICommand<TResult> {
-        public Task<TResult> ExecuteAsync();
+    public interface IResponsesProvider {
+        public Task<int[]> GetValues();
     }
 }

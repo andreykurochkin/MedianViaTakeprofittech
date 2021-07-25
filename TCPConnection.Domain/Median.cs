@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TCPConnection.Domain {
+namespace MedianViaTakeprofittech.Application {
     /// <summary>
     /// median within array of integers
     /// </summary>

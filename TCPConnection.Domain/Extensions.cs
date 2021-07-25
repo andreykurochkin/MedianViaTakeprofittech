@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace TCPConnection.Domain {
+namespace MedianViaTakeprofittech.Application {
     public static class Extensions {
         /// <summary>
         /// returns bytes array in ASCII encoding

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace TCPConnection.Domain {
+namespace MedianViaTakeprofittech.Application {
     /// <summary>
     /// runs task specified amount of times
     /// </summary>
