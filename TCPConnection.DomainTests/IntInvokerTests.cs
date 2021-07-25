@@ -11,6 +11,11 @@ namespace TCPConnection.DomainTests {
     public class IntInvokerTests {
         [Fact]
         public void Tries_Should_When() {
+            double d = 2.0;
+            int i = 1;
+
+            d = (double)i / 2;
+
             //var max = 10;
             //var start = 1;
             //var sut = new TcpResponse(0);

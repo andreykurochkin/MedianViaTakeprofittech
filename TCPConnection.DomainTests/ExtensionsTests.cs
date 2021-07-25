@@ -6,7 +6,7 @@ using FluentAssertions;
 using System.Threading.Tasks;
 
 namespace TCPConnection.DomainTests {
-    public class ExtensionsTest {
+    public class ExtensionsTests {
         [Theory]
         [InlineData(1, new byte[] { 49, 10})]
         [InlineData(11, new byte[] { 49, 49, 10})]

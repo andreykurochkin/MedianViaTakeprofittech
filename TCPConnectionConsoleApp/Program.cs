@@ -10,30 +10,26 @@ using System.Linq;
 using System.Collections.Generic;
 
 namespace TCPConnectionConsoleApp {
-    public class Program {
-        //private const string message = "Greetings\n";
-        //private const string path = "C:\\Code\\TCPConnectionConsoleApp\\TCPConnectionConsoleApp\\task.txt";
-        //private static readonly Encoding _koi8r = System.Text.CodePagesEncodingProvider.Instance.GetEncoding("koi8-r");
-        //private static readonly IPAddress _ipAddr = IPAddress.Parse(host);
-        //private static readonly IPEndPoint _endPoint = new(_ipAddr, port);
-        //private static readonly byte[] foo = Encoding.ASCII.GetBytes(message);
+    public partial class Program {
         public static async Task Main() {
             Console.WriteLine($"start at: {DateTime.Now}");
             int max = 2018;
-            var tasks = new List<Task<int?>>();
-            var range = Enumerable.Range(1, max).ToList();
-            //range.ForEach(i => tasks.Add(new TcpResponse(i).InvokeWithTries()));
-            //range.ForEach(i => tasks.Add(new IntInvoker(i).Invoke()));
-            range.ForEach(i => tasks.Add(
-                    new RepetedTcpResponse(
-                        new TcpResponse(i)
-                    ).ExecuteAsync()
-                )
-            );
-
-            await Task.WhenAll(tasks.ToArray());
-            range.ForEach(i => Console.WriteLine($"{i}\t{tasks[i - 1].Result}"));
-            Console.WriteLine($"stop at: {DateTime.Now}");
+            var results = Enumerable.Range(1, max)
+                .Select(i => new RequestResult(i) { Task = new RepetedTcpResponse(new TcpResponse(i)).ExecuteAsync() })
+                .ToList();
+            await Task.WhenAll(results.Select(r => r.Task));
+            Print(results);
+            var badResults = results.Where(r => r.Task.Result is null);
+            while (badResults.Any()) {
+                badResults.ToList().ForEach(r => r.Task = new RepetedTcpResponse(new TcpResponse(r.Id)).ExecuteAsync());
+                await Task.WhenAll(results.Select(r => r.Task));
+                Print(results);
+            }
+        }
+        private static void Print(List<RequestResult> results) {
+            Console.WriteLine("yet another iteration");
+            Console.WriteLine($"start @: {DateTime.Now}");
+            results.ForEach(r => Console.WriteLine($"{r.Id}\t{r.Task.Result}"));
         }
     }
 }
