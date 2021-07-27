@@ -3,29 +3,6 @@ using System.Threading.Tasks;
 
 namespace MedianViaTakeprofittech.Application {
     /// <summary>
-    /// runs task specified amount of times
-    /// </summary>
-    public class RepetedTcpResponse : ICommand<int?> {
-        private readonly ICommand<int?> _origin;
-        private readonly int _maxTries = 2;
-        private int _currentTry = 1;
-        public RepetedTcpResponse(ICommand<int?> origin) {
-            _origin = origin;
-        }
-        public async Task<int?> ExecuteAsync() {
-            int? result = null;
-            while (_currentTry <= _maxTries) {
-                result = await _origin.ExecuteAsync();
-                if (result is null) {
-                    _currentTry++;
-                    continue;
-                }
-                break;
-            }
-            return result;
-        }
-    }
-    /// <summary>
     /// returns verified value from the server
     /// </summary>
     public class VerifiedTcpResponse : ICommand<int?> {
@@ -37,9 +14,7 @@ namespace MedianViaTakeprofittech.Application {
             _origin = origin;
         }
         public async Task<int?> ExecuteAsync() {
-            int? result = null;
-            result = await _origin.ExecuteAsync();
-            // todo update code so that [new RepetedTcpResponse(new VerifiedResponse())] and avoid infinite loop
+            int? result = await _origin.ExecuteAsync();
             while (_currentTry <= _maxTries) {
                 _currentTry++;
                 if (result is null) {

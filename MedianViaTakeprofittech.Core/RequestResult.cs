@@ -2,7 +2,7 @@
 
 namespace MedianViaTakeprofittech.Application {
     /// <summary>
-    /// Poco for values
+    /// Poco to store results from server
     /// </summary>
     public class RequestResult {
         public int Id { get; }

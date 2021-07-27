@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MedianViaTakeprofittech.Application {
     public static class Settings {
+        // todo turn to json and autofac
         public static int RequestStartValue { get => 1; }
         public static int RequestEndValue { get => 2018; }
         public static string Host { get => "88.212.241.115"; }

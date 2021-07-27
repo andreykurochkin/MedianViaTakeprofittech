@@ -21,6 +21,10 @@ namespace MedianViaTakeprofittech.Application {
             _port = port;
             _encoding = encoding;
         }
+        /// <summary>
+        /// returns response from server as asyncronous operation
+        /// </summary>
+        /// <returns></returns>
         public async Task<int?> ExecuteAsync() {
             try {
                 using TcpClient _client = new(_hostName, _port);

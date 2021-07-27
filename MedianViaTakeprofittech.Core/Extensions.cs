@@ -13,7 +13,7 @@ namespace MedianViaTakeprofittech.Application {
         public static byte[] ToByteArray<T>(this T t) => (t is null) ?
             Array.Empty<byte>() : Encoding.ASCII.GetBytes($"{t}\n");
         /// <summary>
-        /// try catch decorated call
+        /// decorates call to function with try catch operator
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="t"></param>
@@ -33,7 +33,7 @@ namespace MedianViaTakeprofittech.Application {
         /// <returns></returns>
         public static string ToIntegers(this string s) => Regex.Replace(s, @"[^0-9-]+", string.Empty);
         /// <summary>
-        /// try catch decorated call
+        /// decorates call to function with try catch operator
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
@@ -45,6 +45,11 @@ namespace MedianViaTakeprofittech.Application {
                 return string.Empty;
             }
         }
+        /// <summary>
+        /// converts raw string to integer value from integers characters
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static int ToInt(this string s) => int.TryParse(s.SafeToIntegers(), out int result) ? 
             result : 
             throw new Exception($"error on parsing {s}");

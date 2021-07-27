@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TCPConnection.Domain\MedianViaTakeprofittech.Application.csproj" />
+    <ProjectReference Include="..\..\MedianViaTakeprofittech.Core\MedianViaTakeprofittech.Application.csproj" />
   </ItemGroup>
 
 </Project>
