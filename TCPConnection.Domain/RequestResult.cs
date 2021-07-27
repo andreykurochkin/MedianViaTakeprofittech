@@ -8,5 +8,6 @@ namespace MedianViaTakeprofittech.Application {
         public int Id { get; }
         public RequestResult(int id) => Id = id;
         public Task<int?> Task { get; set; }
+        public ICommand<int?> Command { get; set; }
     }
 }

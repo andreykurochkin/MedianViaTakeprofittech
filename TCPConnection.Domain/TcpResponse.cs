@@ -11,18 +11,24 @@ namespace MedianViaTakeprofittech.Application {
     /// retrieves response from server
     /// </summary>
     public class TcpResponse : ICommand<int?> {
-        private static readonly Encoding _koi8r = CodePagesEncodingProvider.Instance.GetEncoding("koi8-r");
         private readonly int _value;
-        public TcpResponse(int value) {
+        private readonly string _hostName;
+        private readonly int _port;
+        private readonly Encoding _encoding;
+        public TcpResponse(int value, string hostName, int port, Encoding encoding) {
             _value = value;
+            _hostName = hostName;
+            _port = port;
+            _encoding = encoding;
         }
         public async Task<int?> ExecuteAsync() {
             try {
-                using TcpClient _client = new("88.212.241.115", 2012);
+                using TcpClient _client = new(_hostName, _port);
                 using var stream = _client.GetStream();
-                using var reader = new StreamReader(stream, _koi8r);
+                using var reader = new StreamReader(stream, _encoding);
                 stream.Write(new ReadOnlySpan<byte>(_value.SafeToByteArray()));
                 var result = await reader.ReadLineAsync();
+                Console.WriteLine($"{_value}\t{result}");
                 return result.ToInt();
             }
             catch (Exception) {
